@@ -1,0 +1,106 @@
+# INTERN1
+#encrypt and decrypt
+morse_code_dict = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 
+'H': '....',
+'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',
+'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
+'6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----', ', ': '--..--', '.': '.-.-.-',
+'?': '..--..', '/': '-..-.', '-': '-....-', '(': '-.--.', ')': '-.--.-'}
+def encryption(message):
+my_cipher = ''
+for myletter in message:
+if myletter != ' ':
+my_cipher += morse_code_dict[myletter] + ' '
+else:
+my_cipher += ' '
+return my_cipher
+def decryption(message):
+message += ' '
+decipher = ''
+mycitext = ''
+for myletter in message:
+if myletter != ' ':
+i = 0
+mycitext += myletter
+else:
+i += 1
+if i == 2:
+decipher += ' '
+else:
+decipher += 
+list(morse_code_dict.keys())[list(morse_code_dict.values()).index(mycitext)]
+mycitext = ''
+return decipher
+def main():
+#encryption
+user_input_encrypt = input("Enter the message to encrypt: ")
+encrypted_output = encryption(user_input_encrypt.upper())
+print("Encrypted Message:", encrypted_output)
+#decryption
+user_input_decrypt = input("Enter the message to decrypt (Morse code): ")
+decrypted_output = decryption(user_input_decrypt)
+print("Decrypted Message:", decrypted_output)
+if __name__ == "__main__":
+main()
+#morse code to blink flash light
+import time
+morse_code_dict = {
+'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
+'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',
+'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+'Y': '-.--', 'Z': '--..',
+'1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...',
+'8': '---..', '9': '----.', '0': '-----',
+' ': '/'
+}
+def morse_to_blink(morse_code):
+for symbol in morse_code:
+if symbol == '.':
+print("Flash (.)")
+time.sleep(1) 
+elif symbol == '-':
+print("Flash (-)")
+time.sleep(3) 
+elif symbol == '/':
+print("Space (/)")
+time.sleep(1) 
+def text_to_morse(text):
+morse_code = []
+for char in text.upper():
+if char in morse_code_dict:
+morse_code.append(morse_code_dict[char])
+return morse_code
+def main():
+input_text = input("Enter text to convert to Morse and simulate blinking: ")
+morse_code = text_to_morse(input_text)
+morse_to_blink(' '.join(morse_code))
+if __name__ == "__main__":
+main()
+#morse code to record flash
+morse_code_dict = {
+'.-': 'A', '-...': 'B', '-.-.': 'C', '-..': 'D', '.': 'E', '..-.': 'F', '--.': 'G', '....': 'H',
+'..': 'I', '.---': 'J', '-.-': 'K', '.-..': 'L', '--': 'M', '-.': 'N', '---': 'O', '.--.': 'P',
+'--.-': 'Q', '.-.': 'R', '...': 'S', '-': 'T', '..-': 'U', '...-': 'V', '.--': 'W', '-..-': 'X',
+'-.--': 'Y', '--..': 'Z',
+'-----': '0', '.----': '1', '..---': '2', '...--': '3', '....-': '4', '.....': '5', '-....': '6',
+'--...': '7', '---..': '8', '----.': '9',
+'/': ' '
+}
+def record_flashes():
+flashes = input("Enter Morse code to record flashes: ")
+return flashes.split()
+def morse_to_text(morse_code):
+text = ''
+for symbol in morse_code:
+if symbol in morse_code_dict:
+text += morse_code_dict[symbol]
+else:
+text += '?'
+return text
+def main():
+flashes = record_flashes()
+decrypted_text = morse_to_text(flashes)
+print("Decrypted Text:", decrypted_text)
+if __name__ == "__main__":
+main()
